@@ -1,5 +1,3 @@
-
-```markdown
 ```mermaid
 classDiagram
     class Filing {
@@ -75,3 +73,4 @@ classDiagram
     Parser ..> RawFigures : produces
     Calculator ..> ValueMetrics : produces
     Pipeline ..> Filing : orchestrates
+```
