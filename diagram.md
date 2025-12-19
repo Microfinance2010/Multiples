@@ -1,4 +1,3 @@
-```mermaid
 classDiagram
     class Filing {
         +path: str
@@ -6,8 +5,7 @@ classDiagram
         +raw_figures: RawFigures
         +metrics: ValueMetrics
         +load(): None
-        +extract_raw_figures(company_name: str, filing_year: int,
-                             currency: str, share_price: float, fx_rate: float): None
+        +extract_raw_figures(company_name: str, filing_year: int, currency: str, share_price: float, fx_rate: float): None
         +compute_metrics(): None
         +to_result(): FilingResult
     }
@@ -38,31 +36,23 @@ classDiagram
     }
 
     class Loader {
-        +load_10k_text(path: str) str
+        +load_10k_text(path: str): str
     }
 
     class Parser {
         <<static>>
-        +parse_number(num_str: str) float
-        +extract_metric(text: str, patterns: list[str], name: str) float
-        +extract_raw_figures_from_text(text: str,
-                                       company_name: str,
-                                       filing_year: int,
-                                       currency: str,
-                                       share_price: float,
-                                       fx_rate: float) RawFigures
+        +parse_number(num_str: str): float
+        +extract_metric(text: str, patterns: list[str], name: str): float
+        +extract_raw_figures_from_text(text: str, company_name: str, filing_year: int, currency: str, share_price: float, fx_rate: float): RawFigures
     }
 
     class Calculator {
-        +compute_value_metrics(raw: RawFigures) ValueMetrics
+        +compute_value_metrics(raw: RawFigures): ValueMetrics
     }
 
     class Pipeline {
         <<static>>
-        +process_filing(path: str, company_name: str,
-                        filing_year: int, currency: str,
-                        share_price: float,
-                        fx_rate: float) FilingResult
+        +process_filing(path: str, company_name: str, filing_year: int, currency: str, share_price: float, fx_rate: float): FilingResult
     }
 
     Filing --> RawFigures : holds
@@ -73,4 +63,3 @@ classDiagram
     Parser ..> RawFigures : produces
     Calculator ..> ValueMetrics : produces
     Pipeline ..> Filing : orchestrates
-```
